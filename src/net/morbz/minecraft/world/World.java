@@ -178,10 +178,24 @@ public class World implements IBlockContainer {
 	 * 
 	 * @return The directory in which the world has been saved
 	 * @throws IOException When file writing fails
-	 */
+	 */	
 	public File save() throws IOException {
+
+		return this.save("worlds/", false);
+	}
+
+	/**
+	 * Saves the world in a new directory within the /worlds/ directory. The name of the directory 
+	 * is the level name. When there are multiple worlds with the same name they will be numbered.
+	 * 
+	 * @return The directory in which the world has been saved
+	 * @throws IOException When file writing fails
+	 * @param worldDirectory Path to the folder wich the world will be created
+	 * @param replace Whether the old worlds will be raplaced or not
+	 */
+	public File save(String worldDirectory, boolean replace) throws IOException {
 		// Create worlds directory
-		File worldDir = new File("worlds");
+		File worldDir = new File(worldDirectory);
 		if(!dirExists(worldDir)) {
 			worldDir.mkdir();
 		}
@@ -190,11 +204,19 @@ public class World implements IBlockContainer {
 		String levelName = level.getLevelName();
 		File levelDir = new File(worldDir, levelName);
 		if(dirExists(levelDir)) {
-			int dirPostfix = 0;
-			do {
-				dirPostfix++;
-				levelDir = new File(worldDir, levelName + dirPostfix);
-			} while(dirExists(levelDir));
+
+			//If wants to replace the old directory
+			if (replace) {
+				FileUtils.deleteDirectory(levelDir);				
+			}
+			else {
+
+				int dirPostfix = 0;
+				do {
+					dirPostfix++;
+					levelDir = new File(worldDir, levelName + dirPostfix);
+				} while(dirExists(levelDir));
+			} 
 		}
 		
 		// Create directories
