@@ -33,6 +33,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.jnbt.NBTOutputStream;
+import org.apache.commons.io.FileUtils;
 
 import net.morbz.minecraft.blocks.IBlock;
 import net.morbz.minecraft.level.Level;

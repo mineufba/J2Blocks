@@ -93,7 +93,10 @@ public enum SimpleBlock implements IBlock {
 	BIRCH_FENCE(Material.BIRCH_FENCE),
 	JUNGLE_FENCE(Material.JUNGLE_FENCE),
 	DARK_OAK_FENCE(Material.DARK_OAK_FENCE),
-	ACACIA_FENCE(Material.ACACIA_FENCE);
+	ACACIA_FENCE(Material.ACACIA_FENCE),
+	SPONGE(Material.SPONGE),
+	SAND(Material.SAND),
+	WOOL(Material.WOOL);
 	
 	private Material material;
 	private SimpleBlock(Material material) {
